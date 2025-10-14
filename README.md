@@ -1,23 +1,10 @@
-# til-template
+## 🚀오늘 내가 배운 것들(Today I Learned)
 
-## 오늘 내가 배운 것들(Today I Learned)
+날짜 클릭 시 해당 TIL로 이동  
+Velog 클릭 시 해당 관련 정리한 Velog로 이동  
+Github 클릭 시 해당 관련 Github 코드로 이동
 
-### [4월 첫째주, 1주차] : html, css
+### [ 10월 넷째주, 5주차 ] - HTML / CSS / JS 및 Git과 Github
 
-24.04.05 세부 주제 4 작성 (상세 내역 링크)
 
-24.04.04 세부 주제 3 작성 (상세 내역 링크)
-
-24.04.03 세부 주제 2 작성 (상세 내역 링크)
-
-24.04.02 세부 주제 1 작성 (상세 내역 링크)
-
-### [n월 n째주, n주차] : 간략 주제 작성 
-
-yy.mm.dd 세부 주제 4 작성 (상세 내역 링크)
-
-yy.mm.dd 세부 주제 3 작성 (상세 내역 링크)
-
-yy.mm.dd 세부 주제 2 작성 (상세 내역 링크)
-
-yy.mm.dd 세부 주제 1 작성 ([상세 내역 링크](https://github.com/kakao-cloud-edu-5/til-template/blob/main/Jan/yyyy-mm-dd))
+- [x] [24.06.28](https://github.com/100-hours-a-week/jayoon-til/blob/main/Oct/2024-10-14.md) - [ Git과 Github, Spring security와 Bcrypt 암호화 알고리즘]
