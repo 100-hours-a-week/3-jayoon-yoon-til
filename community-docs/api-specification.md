@@ -1,5 +1,60 @@
 # [공통]
 
+# 프로필 사진 등록(pre-signed URL) PUT /images?path=
+
+## 요청
+
+---
+
+### Header
+
+없음
+
+### Path variables
+
+없음
+
+### Query parameters
+
+(필수)
+path: 저장 경로
+
+### Body
+
+없음
+
+## 응답
+
+---
+
+### 성공
+
+200
+
+```json
+{
+  "success": true,
+  "message": null,
+  "data": content,
+  "error": null
+}
+```
+
+### 실패
+
+400
+
+```json
+{
+  "success": false,
+  "message": "잘못된 형식입니다.",
+  "data": null,
+  "error": {
+    "statusCode": "400"
+  }
+}
+```
+
 # pre-signed URL 조회 GET /images/pre-signed-url
 
 GET /images/pre-signed-url?filename=name.jpg&content-type=image/jpeg
@@ -11,8 +66,6 @@ GET /images/pre-signed-url?filename=name.jpg&content-type=image/jpeg
 ---
 
 ### Header
-
-Authorization: Bearer access token
 
 ### Path variables
 
@@ -58,32 +111,6 @@ Authorization: Bearer access token
   "data": null,
   "error": {
     "statusCode": "400"
-  }
-}
-```
-
-401
-
-```json
-{
-  "success": false,
-  "message": "존재하지 않는 인증 정보입니다.",
-  "data": null,
-  "error": {
-    "statusCode": "401"
-  }
-}
-```
-
-404, 인증 및 인가를 성공했으나 JWT에서 추출한 userId가 존재하지 않을 때
-
-```json
-{
-  "success": false,
-  "message": "요청한 리소스가 존재하지 않습니다",
-  "data": null,
-  "error": {
-    "statusCode": "404"
   }
 }
 ```
@@ -385,6 +412,25 @@ set-cookie "refreshToken": "df...", httpOnly
 없음
 
 ### Body
+
+(필수)
+
+- email
+  - 320자 이내
+  - 소문자 영문, 숫자, @, .만 가능
+  - 이메일 형식(test@test.com)
+- password
+  - 8~20자
+  - 대, 소문자, 숫자, 특수문자 하나씩 포함.
+- nickname
+  - 2~10자
+  - 띄어쓰기 불가능
+
+(선택)
+
+- profileImageUrl
+  - 2048자 이내
+  - 업로드 하지 않으면 null 예정
 
 ```json
 {
