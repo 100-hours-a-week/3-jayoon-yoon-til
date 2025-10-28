@@ -1037,7 +1037,8 @@ nextCursor는 마지막으로 읽은 게시글의 아이디입니다. 이 값을
         "createdAt": "1997-01-01T00:00:00.000Z",
         "user": {
           "id": 1,
-          "nickname": "jayoon"
+          "nickname": "jayoon",
+          "profileImageUrl": "url"
         }
       },
       // limit 개수만큼의 데이터
@@ -1050,7 +1051,8 @@ nextCursor는 마지막으로 읽은 게시글의 아이디입니다. 이 값을
         "createdAt": "1997-01-01T00:00:00.000Z",
         "user": {
           "id": 1,
-          "nickname": "jayoon"
+          "nickname": "jayoon",
+          "profileImageUrl": "url"
         }
       }
     ],
