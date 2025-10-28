@@ -18,3 +18,5 @@
 - [x] [25-10-21](https://github.com/100-hours-a-week/jayoon-til/blob/main/Oct/2025-10-21.md) - [테스트 코드 개요]
 - [x] [25-10-22](https://github.com/100-hours-a-week/jayoon-til/blob/main/Oct/2025-10-22.md) - [테스트 코드의 비용과 advice 등을 이용한 에러 핸들링]
 - [x] [25-10-23](https://github.com/100-hours-a-week/jayoon-til/blob/main/Oct/2025-10-23.md) - [이미지 및 파일 관리]
+- [x] [25-10-24](https://github.com/100-hours-a-week/jayoon-til/blob/main/Oct/2025-10-24.md) - [이미지 및 파일 관리]
+- [x] [25-10-28](https://github.com/100-hours-a-week/jayoon-til/blob/main/Oct/2025-10-28.md) - [쿠키와 세션, 토큰과 세션 방식의 인가]
