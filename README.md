@@ -20,3 +20,4 @@
 - [x] [25-10-23](https://github.com/100-hours-a-week/jayoon-til/blob/main/Oct/2025-10-23.md) - [이미지 및 파일 관리]
 - [x] [25-10-24](https://github.com/100-hours-a-week/jayoon-til/blob/main/Oct/2025-10-24.md) - [이미지 및 파일 관리]
 - [x] [25-10-28](https://github.com/100-hours-a-week/jayoon-til/blob/main/Oct/2025-10-28.md) - [쿠키와 세션, 토큰과 세션 방식의 인가]
+- [x] [25-10-29](https://github.com/100-hours-a-week/jayoon-til/blob/main/Oct/2025-10-29.md) - [쿠키와 스토리지, JWT를 누가 어디에서 관리할 것인가?]
