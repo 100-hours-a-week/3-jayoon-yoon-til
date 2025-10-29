@@ -1,6 +1,10 @@
 # [공통]
 
-# 프로필 사진 등록(pre-signed URL) PUT /images?path=
+# 프로필 사진 등록(pre-signed URL) PUT /images?path='pre-signed-url'
+
+- 원래라면 서버를 거치지 않고 FE가 S3에 해당 요청 보내서 작업하지만, BE와 FE의 수정을 줄이기 위해 미리 API를 만들어 둡니다.
+- 회원가입 때도 사진을 저장 할 수 있어야 하기 때문에 해당 API는 인증 정보가 필요 없다.
+  - 그렇다면 공격자가 악의적으로 계속 요청하면?
 
 ## 요청
 
@@ -57,7 +61,7 @@ path: 저장 경로
 
 # pre-signed URL 조회 GET /images/pre-signed-url
 
-GET /images/pre-signed-url?filename=name.jpg&content-type=image/jpeg
+GET /images/upload-url?filename=name.jpg&content-type=image/jpeg
 
 - 파일을 구분하기 위해 파일 이름 몇 글자를 따온 문자열 + 고유한 문자열을 합쳐서 파일을 저장할 예정입니다.
 
@@ -99,6 +103,9 @@ GET /images/pre-signed-url?filename=name.jpg&content-type=image/jpeg
   "error": null
 }
 ```
+
+- preSignedUrl: 업로드 용 URL
+- imageUrl: 업로드 이후 조회 용 URL
 
 ### 실패
 
@@ -213,7 +220,7 @@ Set-Cookie: refreshToken=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOn
 }
 ```
 
-# Access token 재발급 POST /auth/access-token
+# Access token 재발급 POST /auth/refresh
 
 ---
 
@@ -229,8 +236,10 @@ POST /auth/access-token, POST /auth/refresh 사이에서 고민을 많이 했습
 
 ### Header
 
-cookie: http only refresh token
+Set-Cookie: HttpOnly, SameSite(Lax), Secure, path='/' key='accesshToken' value='token value'
+Set-Cookie: HttpOnly, SameSite(Strict), Secure, path='/auth/refresh' key='refreshToken' value='token value'
 인가(JWT)가 필요 없음!
+  - 로그인과 액세스 토큰 재발급을 제외하고 잘못된 인증 정보(401)에 대한 응답을 받았을 때 해당 API를 호출하므로 인가는 필요 없다. 오직 refresh token만을 확인한다.
 
 ### Path variables
 
@@ -264,6 +273,8 @@ cookie: http only refresh token
 ### 실패
 
 401, refresh token이 만료 되었거나 잘못 되었을 때
+- 모든 인증 정보 관련된 토큰을 삭제하고, 로그인 페이지로 리다이렉션 시킵니다.
+- 로그인을 포함하여 액세스 토큰 재발급 API 응답으로 401을 받을 때는 액세스 토큰 재발급 API 호출하지 않습니다.
 
 ```json
 {
