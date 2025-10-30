@@ -338,8 +338,12 @@ Set-Cookie: HttpOnly, SameSite(Strict), Secure, path='/auth/refresh' key='refres
 ### 성공
 
 200
+
 **header**
-set-cookie "refreshToken": "df...", httpOnly
+
+Set-Cookie: HttpOnly, SameSite(Lax), Secure, path='/' key='accesshToken' value='token value'
+Set-Cookie: HttpOnly, SameSite(Strict), Secure, path='/auth/refresh' key='refreshToken' value='token value'
+
 **body**
 
 ```json
@@ -351,9 +355,6 @@ set-cookie "refreshToken": "df...", httpOnly
 		"email" : "test@startupcode.kr",
 		"nickname" : "startup",
 		"profileImageUrl" : "https://image.kr/img.jpg"
-		"tokenType": "Bearer",
-		"accessToken": "ey...",
-		"expiresIn": 3600,
 	},
 	"error": null
 }
@@ -459,8 +460,12 @@ set-cookie "refreshToken": "df...", httpOnly
 ### 성공
 
 200, 사용자 경험을 위해 회원가입과 동시에 바로 로그인이 됩니다.
+
 **header**
-set-cookie "refreshToken": "df...", httpOnly
+
+Set-Cookie: HttpOnly, SameSite(Lax), Secure, path='/' key='accesshToken' value='token value'
+Set-Cookie: HttpOnly, SameSite(Strict), Secure, path='/auth/refresh' key='refreshToken' value='token value'
+
 **body**
 
 ```json
@@ -472,9 +477,6 @@ set-cookie "refreshToken": "df...", httpOnly
 		"email" : "test@startupcode.kr",
 		"nickname" : "startup",
 		"profileImageUrl" : "https://image.kr/img.jpg"
-		"tokenType": "Bearer",
-		"accessToken": "ey...",
-		"expiresIn": 3600
 	},
 	"error": null
 }
