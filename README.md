@@ -1,13 +1,14 @@
-## 🚀오늘 내가 배운 것들(Today I Learned) 및 문서
+# 🚀오늘 내가 배운 것들(Today I Learned) 및 문서
 
 날짜 클릭 시 해당 페이지로 이동
 
-### Community 관련 문서
+## Community 관련 문서
 
 - [x] [API 명세서](https://github.com/100-hours-a-week/jayoon-til/blob/main/community-docs/api-specification.md)
 
-### [ 10월 넷째주, 5주차 ] - HTML / CSS / JS 및 Git과 Github
+## [ 10월 넷째주, 5주차 ] - HTML / CSS / JS 및 Git과 Github
 
+### Oct
 - [x] [25-10-14](https://github.com/100-hours-a-week/jayoon-til/blob/main/Oct/2025-10-14.md) - [ Git과 Github, Spring security와 Bcrypt 암호화 알고리즘]
 - [x] [25-10-15](https://github.com/100-hours-a-week/jayoon-til/blob/main/Oct/2025-10-15.md) - [커뮤니티 서비스 프론트엔드 프로젝트 구성]
 - [x] [25-10-16](https://github.com/100-hours-a-week/jayoon-til/blob/main/Oct/2025-10-16.md) - [백엔드 구성 시의 논리와 순서, 그리고 코테 전략]
@@ -23,3 +24,19 @@
 - [x] [25-10-28](https://github.com/100-hours-a-week/jayoon-til/blob/main/Oct/2025-10-28.md) - [쿠키와 스토리지, JWT를 누가 어디에서 관리할 것인가?]
 - [x] [25-10-29](https://github.com/100-hours-a-week/jayoon-til/blob/main/Oct/2025-10-29.md) - [스프링 필터와 인터셉터, 그리고 AOP]
 - [x] [25-10-30](https://github.com/100-hours-a-week/jayoon-til/blob/main/Oct/2025-10-30.md) - [OAuth2.0 - Authorization code 인가 방식과 클라이언트가 Access token을 통해 리소스 서버의 리소스를 다루는, 특정 권한 위임 방법]
+- [x] [25-10-31](https://github.com/100-hours-a-week/jayoon-til/blob/main/Oct/2025-10-31.md) - [DeepDive - 세션/쿠키 방식과 JWT 방식의 인증/인가 방식의 특징과 각각 CSRF, XSS 공격과의 관계]
+
+### Nov
+- [x] [25-11-03](https://github.com/100-hours-a-week/jayoon-til/blob/main/Nov/2025-11-03.md) - [운영체제와 리눅스, 프로세스와 스레드, 멀티스레드와  동시성 프로그래밍, 데이터 동기화]
+- [x] [25-11-04](https://github.com/100-hours-a-week/jayoon-til/blob/main/Nov/2025-11-04.md) - [네트워크, TCP/IP 각 계층에 대한 네트워우크 장비, NAR]
+- [x] [25-11-05](https://github.com/100-hours-a-week/jayoon-til/blob/main/Nov/2025-11-05.md) - [IPv4의 한계와 공인IP와 사설IP의 관계, NAT 특징, Symmetric NAT와 Cone NAT, Port Forwarding, VPN]
+- [x] [25-11-06](https://github.com/100-hours-a-week/jayoon-til/blob/main/Nov/2025-11-06.md) - [클라이언트-서버 간 통신에서 네트워크의 전체적인 흐름]
+- [x] [25-11-07](https://github.com/100-hours-a-week/jayoon-til/blob/main/Nov/2025-11-07.md) - [멀티스레드 환경에서의 락, 이력서/포트폴리오 및 모의면접 피드백]
+
+### Dec
+
+### Jan
+
+### Feb
+
+### Mar
