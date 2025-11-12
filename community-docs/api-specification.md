@@ -1000,7 +1000,7 @@ set-cookie "refreshToken": "df...", httpOnly
 # 게시글 목록 조회(인피니티 스크롤링) GET /posts
 
 첫 번째 요청: GET /posts?limit=10
-두 번째 이후 요청: GET /posts?limit=10&cursor={이전 응답에서 받은 nextCursor값}
+두 번째 이후 요청: GET /posts?limit=10&cursor={이전 응답에서 받은 nextCursor값}
 
 ## 요청
 
