@@ -27,11 +27,19 @@
 - [x] [25-10-31](https://github.com/100-hours-a-week/jayoon-til/blob/main/Oct/2025-10-31.md) - [DeepDive - 세션/쿠키 방식과 JWT 방식의 인증/인가 방식의 특징과 각각 CSRF, XSS 공격과의 관계]
 
 ### Nov
+#### 네트워크와 운영체제
 - [x] [25-11-03](https://github.com/100-hours-a-week/jayoon-til/blob/main/Nov/2025-11-03.md) - [운영체제와 리눅스, 프로세스와 스레드, 멀티스레드와  동시성 프로그래밍, 데이터 동기화]
 - [x] [25-11-04](https://github.com/100-hours-a-week/jayoon-til/blob/main/Nov/2025-11-04.md) - [네트워크, TCP/IP 각 계층에 대한 네트워우크 장비, NAR]
 - [x] [25-11-05](https://github.com/100-hours-a-week/jayoon-til/blob/main/Nov/2025-11-05.md) - [IPv4의 한계와 공인IP와 사설IP의 관계, NAT 특징, Symmetric NAT와 Cone NAT, Port Forwarding, VPN]
 - [x] [25-11-06](https://github.com/100-hours-a-week/jayoon-til/blob/main/Nov/2025-11-06.md) - [클라이언트-서버 간 통신에서 네트워크의 전체적인 흐름]
 - [x] [25-11-07](https://github.com/100-hours-a-week/jayoon-til/blob/main/Nov/2025-11-07.md) - [멀티스레드 환경에서의 락, 이력서/포트폴리오 및 모의면접 피드백]
+
+#### AWS
+- [x] [25-11-10](https://github.com/100-hours-a-week/jayoon-til/blob/main/Nov/2025-11-10.md) - [VPC와 보안그룹, EC2. 여러 저장소인 EFS, S3]
+- [x] [25-11-11](https://github.com/100-hours-a-week/jayoon-til/blob/main/Nov/2025-11-11.md) - [RDS, ELB, Cloud front]
+- [x] [25-11-12](https://github.com/100-hours-a-week/jayoon-til/blob/main/Nov/2025-11-12.md) - [CIDR, VPC, Lambda]
+- [x] [25-11-13](https://github.com/100-hours-a-week/jayoon-til/blob/main/Nov/2025-11-13.md) - [모니터링 도구인 CloudTrail, CloudWatch, Athena와 CodeDeploy를 통한 배포 자동화]
+- [x] [25-11-14](https://github.com/100-hours-a-week/jayoon-til/blob/main/Nov/2025-11-14.md) - [Route53과 ELB를 활용한 글로벌 트래픽 처리 및 이력서/포트폴리오 피드백]
 
 ### Dec
 
