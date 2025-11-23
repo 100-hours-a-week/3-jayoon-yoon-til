@@ -41,6 +41,16 @@
 - [x] [25-11-13](https://github.com/100-hours-a-week/jayoon-til/blob/main/Nov/2025-11-13.md) - [모니터링 도구인 CloudTrail, CloudWatch, Athena와 CodeDeploy를 통한 배포 자동화]
 - [x] [25-11-14](https://github.com/100-hours-a-week/jayoon-til/blob/main/Nov/2025-11-14.md) - [Route53과 ELB를 활용한 글로벌 트래픽 처리 및 이력서/포트폴리오 피드백]
 
+#### Docker
+- [x] [25-11-17](https://github.com/100-hours-a-week/jayoon-til/blob/main/Nov/2025-11-17.md) - [Docker, image, file, container, registry]
+- [x] [25-11-18](https://github.com/100-hours-a-week/jayoon-til/blob/main/Nov/2025-11-18.md) - [docker portainer, volume, 카카오 아지트 투어]
+- [x] [25-11-20](https://github.com/100-hours-a-week/jayoon-til/blob/main/Nov/2025-11-20.md) - [Docker compose, EC2 t3.micro 2개 VS t3.small 1개에 대한 고찰, ELB과 로드 밸런서를 통해 웬만한 에러 사항을 제어할 수 있을까?]
+- [x] [25-11-21](https://github.com/100-hours-a-week/jayoon-til/blob/main/Nov/2025-11-21.md) - [딥다이브: Docker image가 커지면 발생할 수 있는 문제, 개발 시장과 취업 전략, 이력서/포트폴리오, 면접 피드백]
+
+#### CI/CD
+
+#### k8s
+
 ### Dec
 
 ### Jan
