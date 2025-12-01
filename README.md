@@ -48,10 +48,15 @@
 - [x] [25-11-21](https://github.com/100-hours-a-week/jayoon-til/blob/main/Nov/2025-11-21.md) - [딥다이브: Docker image가 커지면 발생할 수 있는 문제, 개발 시장과 취업 전략, 이력서/포트폴리오, 면접 피드백]
 
 #### CI/CD
-
-#### k8s
+- [x] [25-11-24](https://github.com/100-hours-a-week/jayoon-til/blob/main/Nov/2025-11-24.md) - [CI/CD와 github actions, jenkins, ECR]
+- [x] [25-11-25](https://github.com/100-hours-a-week/jayoon-til/blob/main/Nov/2025-11-25.md) - [Zero-downtime deployment, blue/green, rolling, canary deployment]
+- [x] [25-11-26](https://github.com/100-hours-a-week/jayoon-til/blob/main/Nov/2025-11-26.md) - [CI/CD 과제 진행1]
+- [x] [25-11-27](https://github.com/100-hours-a-week/jayoon-til/blob/main/Nov/2025-11-27.md) - [CI/CD 과제 진행2]
+- [x] [25-11-28](https://github.com/100-hours-a-week/jayoon-til/blob/main/Nov/2025-11-28.md) - [인프라 구성 완료]
 
 ### Dec
+#### k8s
+- [x] [25-12-01](https://github.com/100-hours-a-week/jayoon-til/blob/main/Dec/2025-12-01.md) - [k8s 입문]
 
 ### Jan
 
