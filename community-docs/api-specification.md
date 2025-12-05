@@ -1,12 +1,12 @@
 # 목차
 - 가이드
-- 도메인 별 API
+- 리소스 및 도메인 별 API
   - users
   - posts
   - auth
   - images
 
-# [가이드]
+# 가이드
 ## PUT과 PATCH
 - PUT은 리소스 전체를 완전히 대체합니다. 즉 리소스의 모든 필드가 수정 됩니다.
 - PATCH는 리소스의 일부 필드만 부분적으로 수정합니다.
@@ -15,11 +15,7 @@
 
 ## 회원 가입 POST /users
 
----
-
 ### 요청
-
----
 
 #### Header
 
@@ -124,20 +120,9 @@ Set-Cookie: HttpOnly, SameSite(Strict), Secure, path='/auth/refresh' key='refres
 - 프로필 사진, 닉네임, 비밀번호를 변경 할 수 있습니다.
 ### 요청
 
-#### Body
-
-```json
-{
-  "imageUrl": "https://your-cdn.com/images/profile/unique-file-name.jpg",
-  "nickname": "jayoon",
-  "currentPassword": "current_password",
-  "updatedPassword": "updated_password"
-}
-```
-
 #### Header
 
-Authorization: Bearer access token
+HeaderCookie: Bearer access token
 
 #### Path variables
 
@@ -149,9 +134,26 @@ Authorization: Bearer access token
 
 #### Body
 
+(선택)
+- profileImageUrl
+  - 2048자 이내
+  - 업로드 하지 않으면 null 예정
+- currentPassword
+  - 8~20자
+  - 대, 소문자, 숫자, 특수문자 하나씩 포함.
+- updatedPassword
+  - 8~20자
+  - 대, 소문자, 숫자, 특수문자 하나씩 포함.
+- nickname
+  - 2~10자
+  - 띄어쓰기 불가능
+
 ```json
 {
-  "imageUrl": "https://your-cdn.com/images/profile/unique-file-name.jpg"
+  "profileImageUrl": "https://your-cdn.com/images/profile/unique-file-name.jpg",
+  "nickname": "jayoon",
+  "currentPassword": "current_password",
+  "updatedPassword": "updated_password"
 }
 ```
 
@@ -169,8 +171,33 @@ Authorization: Bearer access token
   "message": "프로필 사진이 성공적으로 변경되었습니다.",
   "data": {
     "userId": 1,
-    "imageUrl": "https://your-cdn.com/images/profile/new-image.jpg"
+    "profileImageUrl": "https://your-cdn.com/images/profile/new-image.jpg"
   },
+  "error": null
+}
+```
+
+```json
+{
+  "success": true,
+  "message": "닉네임이 성공적으로 변경되었습니다.",
+  "data": {
+    "userId": 1,
+    "nickname": "jayoon"
+  },
+  "error": null
+}
+```
+
+##### header
+set-cookie "refreshToken": "df...", httpOnly
+- 비밀번호를 변경한 후 해당 기기만 인증 상태를 유지합니다.
+
+```json
+{
+  "success": true,
+  "message": "비밀번호 변경이 성공적으로 완료 되었습니다. 다른 기기에서 로그아웃 됩니다.",
+  "data": null,
   "error": null
 }
 ```
@@ -242,132 +269,11 @@ Authorization: Bearer access token
 }
 ```
 
-## 닉네임 수정 PATCH /users/me
-
----
-
-### 요청
-
----
-
-#### Header
-
-Authorization: Bearer access token
-
-#### Path variables
-
-없음
-
-#### Query parameters
-
-없음
-
-#### Body
-
-```json
-{
-  "nickname": "jayoon"
-}
-```
-
-### 응답
-
----
-
-#### 성공
-
-200
-
-```json
-{
-  "success": true,
-  "message": "닉네임이 성공적으로 변경되었습니다.",
-  "data": {
-    "userId": 1,
-    "nickname": "jayoon"
-  },
-  "error": null
-}
-```
-
-#### 실패
-
-400
-
-```json
-{
-  "success": false,
-  "message": "잘못된 형식입니다.",
-  "data": null,
-  "error": {
-    "statusCode": "400"
-  }
-}
-```
-
-401
-
-```json
-{
-  "success": false,
-  "message": "**존재하지** 않는 인증 정보입니다.",
-  "data": null,
-  "error": {
-    "statusCode": "401"
-  }
-}
-```
-
-403
-
-```json
-{
-  "success": false,
-  "message": "권한이 없습니다.",
-  "data": null,
-  "error": {
-    "statusCode": "403"
-  }
-}
-```
-
-404, 인증 및 인가를 성공했으나 JWT에서 추출한 userId가 존재하지 않을 때
-
-```json
-{
-  "success": false,
-  "message": "요청한 리소스가 존재하지 않습니다",
-  "data": null,
-  "error": {
-    "statusCode": "404"
-  }
-}
-```
-
-500
-
-```json
-{
-  "success": false,
-  "message": "서비스가 일시적으로 불안정합니다. 관리자에게 문의해주세요.",
-  "data": null,
-  "error": {
-    "statusCode": "500"
-  }
-}
-```
-
 ## 회원 탈퇴 DELETE /users/me
-
----
-
 ### 요청
-
----
-
 #### Header
 
-Authorization: Bearer access token
+HeaderCookie: Bearer access token
 
 #### Path variables
 
@@ -474,15 +380,14 @@ implementations to reject the request.
 }
 ```
 
-## 비밀번호 수정 PATCH /users/me
+# posts
 
+## 게시글 생성 POST /posts
 ### 요청
-
----
 
 #### Header
 
-Authorization: Bearer access token
+HeaderCookie: Bearer access token
 
 #### Path variables
 
@@ -494,10 +399,13 @@ Authorization: Bearer access token
 
 #### Body
 
+이미지는 이후에 여러 개를 받을 수 있을 때를 고려하여 배열로 받습니다. 현재는 하나만 받을 수 있습니다.
+
 ```json
 {
-  "currentPassword": "current_password",
-  "updatedPassword": "updated_password"
+  "title": "제목1",
+  "body": "본문 내용",
+  "imageUrls": ["https://your-cdn.com/images/profile/unique-file-name.jpg"]
 }
 ```
 
@@ -507,19 +415,31 @@ Authorization: Bearer access token
 
 #### 성공
 
-200, 비밀번호를 변경한 후 해당 기기만 인증 상태를 유지합니다.
-**header**
-set-cookie "refreshToken": "df...", httpOnly
-**body**
+201
+**Header**:
+
+- `Location`: `/api/v1/posts/123` (새로 생성된 게시글의 ID가 123일 경우)
+  **Body**
 
 ```json
 {
   "success": true,
-  "message": "비밀번호 변경이 성공적으로 완료 되었습니다. 다른 기기에서 로그아웃 됩니다.",
+  "message": "게시글이 성공적으로 생성되었습니다.",
   "data": {
-    "tokenType": "Bearer",
-    "accessToken": "ey...",
-    "expiresIn": 3600
+    "id": 123,
+    "title": "새로운 게시글 제목입니다",
+    "body": "여기에 게시글 내용이 들어갑니다. 마크다운도 지원해요!",
+    "likeCount": 0,
+    "commentCount": 0,
+    "viewCount": 0,
+    "imageUrls": ["https://your-cdn.com/images/profile/unique-file-name.jpg"],
+    "createdAt": "2025-10-13T07:45:43Z",
+    "user": {
+      "id": 1,
+      "nickname": "jayoon"
+    },
+    "isAuthor": true,
+    "isLiked": false
   },
   "error": null
 }
@@ -532,7 +452,7 @@ set-cookie "refreshToken": "df...", httpOnly
 ```json
 {
   "success": false,
-  "message": "잘못된 형식입니다.",
+  "message": "입력값 유효성 검사에 실패했습니다.",
   "data": null,
   "error": {
     "statusCode": "400"
@@ -540,7 +460,7 @@ set-cookie "refreshToken": "df...", httpOnly
 }
 ```
 
-401 access token이 이상할 때
+401
 
 ```json
 {
@@ -549,19 +469,6 @@ set-cookie "refreshToken": "df...", httpOnly
   "data": null,
   "error": {
     "statusCode": "401"
-  }
-}
-```
-
-403
-
-```json
-{
-  "success": false,
-  "message": "비밀번호가 잘못 되었습니다.",
-  "data": null,
-  "error": {
-    "statusCode": "403"
   }
 }
 ```
@@ -599,11 +506,9 @@ set-cookie "refreshToken": "df...", httpOnly
 
 ### 요청
 
----
-
 #### Header
 
-Authorization: Bearer access token
+HeaderCookie: Bearer access token
 
 #### Path variables
 
@@ -724,129 +629,12 @@ nextCursor는 마지막으로 읽은 게시글의 아이디입니다. 이 값을
 }
 ```
 
-## 게시글 생성 POST /posts
-## 요청
-
-#### Header
-
-Authorization: Bearer access token
-
-#### Path variables
-
-없음
-
-#### Query parameters
-
-없음
-
-#### Body
-
-이미지는 이후에 여러 개를 받을 수 있을 때를 고려하여 배열로 받습니다. 현재는 하나만 받을 수 있습니다.
-
-```json
-{
-  "title": "제목1",
-  "body": "본문 내용",
-  "imageUrls": ["https://your-cdn.com/images/profile/unique-file-name.jpg"]
-}
-```
-
-### 응답
-
----
-
-#### 성공
-
-201
-**Header**:
-
-- `Location`: `/api/v1/posts/123` (새로 생성된 게시글의 ID가 123일 경우)
-  **Body**
-
-```json
-{
-  "success": true,
-  "message": "게시글이 성공적으로 생성되었습니다.",
-  "data": {
-    "id": 123,
-    "title": "새로운 게시글 제목입니다",
-    "body": "여기에 게시글 내용이 들어갑니다. 마크다운도 지원해요!",
-    "likeCount": 0,
-    "commentCount": 0,
-    "viewCount": 0,
-    "imageUrls": ["https://your-cdn.com/images/profile/unique-file-name.jpg"],
-    "createdAt": "2025-10-13T07:45:43Z",
-    "user": {
-      "id": 1,
-      "nickname": "jayoon"
-    },
-    "isAuthor": true,
-    "isLiked": false
-  },
-  "error": null
-}
-```
-
-#### 실패
-
-400
-
-```json
-{
-  "success": false,
-  "message": "입력값 유효성 검사에 실패했습니다.",
-  "data": null,
-  "error": {
-    "statusCode": "400"
-  }
-}
-```
-
-401
-
-```json
-{
-  "success": false,
-  "message": "존재하지 않는 인증 정보입니다.",
-  "data": null,
-  "error": {
-    "statusCode": "401"
-  }
-}
-```
-
-404, 인증 및 인가를 성공했으나 JWT에서 추출한 userId가 존재하지 않을 때
-
-```json
-{
-  "success": false,
-  "message": "요청한 리소스가 존재하지 않습니다",
-  "data": null,
-  "error": {
-    "statusCode": "404"
-  }
-}
-```
-
-500
-
-```json
-{
-  "success": false,
-  "message": "서비스가 일시적으로 불안정합니다. 관리자에게 문의해주세요.",
-  "data": null,
-  "error": {
-    "statusCode": "500"
-  }
-}
-```
-
 ## 게시글 상세 조회 GET /posts/:postId
 ### 요청
 
 #### Header
 
-Authorization: Bearer access token
+HeaderCookie: Bearer access token
 
 #### Path variables
 
@@ -951,10 +739,10 @@ postId: Number, 1
 ```
 
 ## 게시글 삭제 DELETE /posts/:postId
-
+### 요청
 #### Header
 
-Authorization: Bearer access token
+HeaderCookie: Bearer access token
 
 #### Path variables
 
@@ -1056,7 +844,7 @@ postId: Number, 1
 
 #### Header
 
-Authorization: Bearer access token
+HeaderCookie: Bearer access token
 
 #### Path variables
 
@@ -1174,11 +962,11 @@ nextCursor는 마지막으로 읽은 게시글의 아이디입니다. 이 값을
 }
 ```
 
-# 댓글 생성 POST /posts/:postId/comments
-
+## 댓글 생성 POST /posts/:postId/comments
+### 요청
 #### Header
 
-Authorization: Bearer access token
+HeaderCookie: Bearer access token
 
 #### Path variables
 
@@ -1286,7 +1074,7 @@ Authorization: Bearer access token
 
 #### Header
 
-Authorization: Bearer access token
+HeaderCookie: Bearer access token
 
 #### Path variables
 
@@ -1388,7 +1176,7 @@ commentId: Number, 1
 
 #### Header
 
-Authorization: Bearer access token
+HeaderCookie: Bearer access token
 
 #### Path variables
 
@@ -1483,7 +1271,7 @@ commentId: Number, 1
 ### 요청
 #### Header
 
-Authorization: Bearer access token
+HeaderCookie: Bearer access token
 
 #### Path variables
 
@@ -1712,7 +1500,7 @@ Set-Cookie: HttpOnly, SameSite(Strict), Secure, path='/auth/refresh' key='refres
 
 #### Header
 
-Authorization: Bearer access token
+HeaderCookie: Bearer access token
 
 #### Path variables
 
@@ -1967,14 +1755,14 @@ GET /images/upload-url?filename=name.jpg&content-type=image/jpeg
   "message": null,
   "data": {
     "preSignedUrl": "https://your-bucket.s3.amazonaws.com/...",
-    "imageUrl": "https://your-cdn.com/images/profile/unique-file-name.jpg"
+    "profileImageUrl": "https://your-cdn.com/images/profile/unique-file-name.jpg"
   },
   "error": null
 }
 ```
 
 - preSignedUrl: 업로드 용 URL
-- imageUrl: 업로드 이후 조회 용 URL
+- profileImageUrl: 업로드 이후 조회 용 URL
 
 #### 실패
 
