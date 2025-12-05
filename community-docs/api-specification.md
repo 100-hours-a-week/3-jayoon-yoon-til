@@ -832,6 +832,127 @@ postId: Number, 1
 }
 ```
 
+## 게시글 수정 PATCH /posts/:postId
+### 요청
+#### Header
+
+HeaderCookie: Bearer access token
+
+#### Path variables
+
+postId: Number, 1
+
+#### Query parameters
+
+없음
+
+#### Body
+
+수정하려는 필드만 선택적으로 포함합니다. 필드가 전혀 포함 되어 있지 않으면 아무런 변화도 없습니다.
+
+```json
+{
+  "title": "제목1",
+  "body": "본문 내용",
+  "imageUrls": ["https://your-cdn.com/images/profile/unique-file-name.jpg"]
+}
+```
+
+```json
+{
+  "title": "제목1"
+}
+```
+
+### 응답
+
+---
+
+#### 성공
+
+200
+**Body**
+
+```json
+{
+  "success": true,
+  "message": null,
+  "data": {
+    "id": 123,
+    "title": "새로운 게시글 제목입니다",
+    "body": "여기에 게시글 내용이 들어갑니다. 마크다운도 지원해요!",
+    "likeCount": 0,
+    "commentCount": 0,
+    "viewCount": 0,
+    "imageUrls": ["https://your-cdn.com/images/profile/unique-file-name.jpg"],
+    "createdAt": "2025-10-13T07:45:43Z",
+    "user": {
+      "id": 1,
+      "nickname": "jayoon"
+    }
+  },
+  "error": null
+}
+```
+
+#### 실패
+
+400
+
+```json
+{
+  "success": false,
+  "message": "잘못된 형식입니다.",
+  "data": null,
+  "error": {
+    "statusCode": "400"
+  }
+}
+```
+
+401
+
+```json
+{
+  "success": false,
+  "message": "존재하지 않는 인증 정보입니다.",
+  "data": null,
+  "error": {
+    "statusCode": "401"
+  }
+}
+```
+
+404
+
+1. 인증 및 인가를 성공했으나 JWT에서 추출한 userId가 존재하지 않을 때
+2. 해당 페이지 리소스가 존재하지 않을 때
+3. 보안을 위해 접근 권한이 없을 때 403이 아닌 404로 응답합니다.
+
+```json
+{
+  "success": false,
+  "message": "요청한 리소스가 존재하지 않습니다",
+  "data": null,
+  "error": {
+    "statusCode": "404"
+  }
+}
+```
+
+500
+
+```json
+{
+  "success": false,
+  "message": "서비스가 일시적으로 불안정합니다. 관리자에게 문의해주세요.",
+  "data": null,
+  "error": {
+    "statusCode": "500"
+  }
+}
+```
+
 ## 댓글 목록 조회(인피니티 스크롤링) GET /posts/:postId/comments
 
 - 첫 번째 요청: GET /posts/:postId/comments?limit=10
@@ -1089,7 +1210,9 @@ commentId: Number, 1
 
 ```json
 {
-  "body": "본문입니다~~"
+  "title": "제목입니다.",
+  "body": "본문입니다~~",
+  "imageUrl": "http://asdlkfjaklsj.faksdfj"
 }
 ```
 
@@ -1212,127 +1335,6 @@ commentId: Number, 1
 #### 실패
 
 400 `postId` 또는 `commentId`가 유효한 숫자 형식이 아닐 때
-
-```json
-{
-  "success": false,
-  "message": "잘못된 형식입니다.",
-  "data": null,
-  "error": {
-    "statusCode": "400"
-  }
-}
-```
-
-401
-
-```json
-{
-  "success": false,
-  "message": "존재하지 않는 인증 정보입니다.",
-  "data": null,
-  "error": {
-    "statusCode": "401"
-  }
-}
-```
-
-404
-
-1. 인증 및 인가를 성공했으나 JWT에서 추출한 userId가 존재하지 않을 때
-2. 해당 페이지 리소스가 존재하지 않을 때
-3. 보안을 위해 접근 권한이 없을 때 403이 아닌 404로 응답합니다.
-
-```json
-{
-  "success": false,
-  "message": "요청한 리소스가 존재하지 않습니다",
-  "data": null,
-  "error": {
-    "statusCode": "404"
-  }
-}
-```
-
-500
-
-```json
-{
-  "success": false,
-  "message": "서비스가 일시적으로 불안정합니다. 관리자에게 문의해주세요.",
-  "data": null,
-  "error": {
-    "statusCode": "500"
-  }
-}
-```
-
-### 게시글 수정 PATCH /posts/:postId
-### 요청
-#### Header
-
-HeaderCookie: Bearer access token
-
-#### Path variables
-
-postId: Number, 1
-
-#### Query parameters
-
-없음
-
-#### Body
-
-수정하려는 필드만 선택적으로 포함합니다. 필드가 전혀 포함 되어 있지 않으면 아무런 변화도 없습니다.
-
-```json
-{
-  "title": "제목1",
-  "body": "본문 내용",
-  "imageUrls": ["https://your-cdn.com/images/profile/unique-file-name.jpg"]
-}
-```
-
-```json
-{
-  "title": "제목1"
-}
-```
-
-### 응답
-
----
-
-#### 성공
-
-200
-**Body**
-
-```json
-{
-  "success": true,
-  "message": null,
-  "data": {
-    "id": 123,
-    "title": "새로운 게시글 제목입니다",
-    "body": "여기에 게시글 내용이 들어갑니다. 마크다운도 지원해요!",
-    "likeCount": 0,
-    "commentCount": 0,
-    "viewCount": 0,
-    "imageUrls": ["https://your-cdn.com/images/profile/unique-file-name.jpg"],
-    "createdAt": "2025-10-13T07:45:43Z",
-    "user": {
-      "id": 1,
-      "nickname": "jayoon"
-    }
-  },
-  "error": null
-}
-```
-
-#### 실패
-
-400
 
 ```json
 {
@@ -1577,8 +1579,6 @@ Set-Cookie: refreshToken=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOn
 
 ## Access token 재발급 POST /auth/refresh
 
----
-
 POST /auth/access-token, POST /auth/refresh 사이에서 고민을 많이 했습니다. 결론적으로 순수 RESTful API를 준수하다가 '재'발급과 같이 method + resource로 나타내기 애매한 것들은 예외를 둘까 앞으로 쭉 고민해볼 예정입니다. 로그인을 POST /users/login으로 하기 싫어서 인증 정보를 하나의 독립된 도메인으로 뒀습니다. 그래서 POST /auth로 우회했더니 이러한 벽을 또 만나네요...
 때문에 이럴 때 다음을 고려하기로 했습니다.
 
@@ -1586,9 +1586,6 @@ POST /auth/access-token, POST /auth/refresh 사이에서 고민을 많이 했습
 - 업계에서 많이 사용하는가?
 
 ### 요청
-
----
-
 #### Header
 
 Set-Cookie: HttpOnly, SameSite(Lax), Secure, path='/' key='accesshToken' value='token value'
@@ -1609,9 +1606,6 @@ Set-Cookie: HttpOnly, SameSite(Strict), Secure, path='/auth/refresh' key='refres
 없음
 
 ### 응답
-
----
-
 #### 성공
 
 200
@@ -1654,10 +1648,6 @@ Set-Cookie: HttpOnly, SameSite(Strict), Secure, path='/auth/refresh' key='refres
   }
 }
 ```
-
-
-
-
 
 # images
 ## 이미지 추가 POST /images
